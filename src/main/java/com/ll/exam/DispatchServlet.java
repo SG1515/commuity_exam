@@ -20,6 +20,9 @@ public class DispatchServlet extends HttpServlet {
             case "GET":
                 switch (rq.getActionPath()) { // 핵심 path 경로를 만들기 위해
                     // getActionPath가 없으면 1,2,3 다 만들어줘야함.
+                    case "/usr/article/modify":
+                        articleController.showModify(rq);
+                        break;
                     case "/usr/article/detail":
                         articleController.showDetail(rq);
                         break;
@@ -39,7 +42,9 @@ public class DispatchServlet extends HttpServlet {
                 break;
             case "POST":
                 switch (rq.getActionPath()) {
-
+                    case "/usr/article/modify":
+                        articleController.doModify(rq);
+                        break;
                     case "/usr/article/write":
                         articleController.doWrite(rq);
                         break;
