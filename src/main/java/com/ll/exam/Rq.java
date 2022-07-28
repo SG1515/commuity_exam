@@ -49,7 +49,7 @@ public class Rq {
         }
     }
 
-    public void appendBody(String str) {
+    public void appendBody(String str) { //HTML 출력(브라우저) 양이 적을 때
         try {
             resp.getWriter().append(str);
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class Rq {
         req.setAttribute(name, value);
     }
 
-    public void view(String path) {
+    public void view(String path) { //HTML 출력(브라우저) 양이 많을 때
         // gugudan2.jsp 에게 나머지 작업을 토스
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
         try {

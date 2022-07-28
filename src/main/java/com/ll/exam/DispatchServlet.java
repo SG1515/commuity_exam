@@ -18,7 +18,8 @@ public class DispatchServlet extends HttpServlet {
 
         switch (rq.getMethod()) {
             case "GET":
-                switch (rq.getActionPath()) {
+                switch (rq.getActionPath()) { // 핵심 path 경로를 만들기 위해
+                    // getActionPath가 없으면 1,2,3 다 만들어줘야함.
                     case "/usr/article/detail":
                         articleController.showDetail(rq);
                         break;

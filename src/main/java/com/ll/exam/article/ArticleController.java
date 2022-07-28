@@ -37,7 +37,7 @@ public class ArticleController {
 
     public void showDetail(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
-
+        // free의 정보를 가져와야하기때문에 1
         if (id == 0) {
             rq.appendBody("번호를 입력해주세요.");
             return;
