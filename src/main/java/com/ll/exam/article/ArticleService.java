@@ -18,4 +18,8 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
+
+    public ArticleDto findById(long id) {
+        return articleRepository.findById(id);
+    }
 }
