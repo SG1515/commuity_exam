@@ -56,7 +56,8 @@ public class Rq {
             throw new RuntimeException(e);
         }
     }
-    public void println(String str) { //HTML 출력(브라우저) 양이 적을 때
+
+    public void println(String str) {
         print(str + "\n");
     }
 
@@ -64,7 +65,7 @@ public class Rq {
         req.setAttribute(name, value);
     }
 
-    public void view(String path) { //HTML 출력(브라우저) 양이 많을 때
+    public void view(String path) {
         // gugudan2.jsp 에게 나머지 작업을 토스
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
         try {
@@ -80,29 +81,32 @@ public class Rq {
         return req.getRequestURI();
     }
 
-    public String getMethod() {
-        return req.getMethod();
-    }
-
     public String getActionPath() {
         String[] bits = req.getRequestURI().split("/");
 
         return "/%s/%s/%s".formatted(bits[1], bits[2], bits[3]);
-        //[usr]/[article]/[list]
-        //공통/컨트롤러/액션
+    }
+
+    public String getRouteMethod() {
+        String method = getParam("_method", "");
+
+        if (method.length() > 0 ) {
+            return method.toUpperCase();
+        }
+
+        return req.getMethod();
     }
 
     public long getLongPathValueByIndex(int index, long defaultValue) {
         String value = getPathValueByIndex(index, null);
 
-        if ( value == null ) {
+        if (value == null) {
             return defaultValue;
         }
 
         try {
             return Long.parseLong(value);
-        }
-        catch ( NumberFormatException e ) {
+        } catch (NumberFormatException e) {
             return defaultValue;
         }
     }
@@ -133,4 +137,19 @@ public class Rq {
                 """.formatted(uri));
     }
 
+    public void historyBack(String msg) {
+        if (msg != null && msg.trim().length() > 0) {
+            println("""
+                    <script>
+                    alert("%s");
+                    </script>
+                    """.formatted(msg));
+        }
+
+        println("""
+                <script>
+                history.back();
+                </script>
+                """);
+    }
 }
