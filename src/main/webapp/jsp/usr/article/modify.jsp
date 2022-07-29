@@ -47,7 +47,7 @@ function ArticleSave__submitForm(form) {
 
             <div>
                 <div>
-                    <input class="hover:underline hover:text-[red] cursor-pointer" type="submit" value="수정" />
+                    <input class="hover:underline hover:text-[red] cursor-pointer mt-5" type="submit" value="수정" />
                 </div>
             </div>
         </form>
